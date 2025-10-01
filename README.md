@@ -4,11 +4,11 @@ Smart Public Transport Ticketing System
 DSA612S - Distributed Systems and Applications - Assignment 2 (2025)
 
 Group Members
-- [Member 1 Name] - [Student ID] - [GitHub Username]
-- [Member 2 Name] - [Student ID] - [GitHub Username]
-- [Member 3 Name] - [Student ID] - [GitHub Username]
-- [Member 4 Name] - [Student ID] - [GitHub Username]
-- [Member 5 Name] - [Student ID] - [GitHub Username]
+- Benhard Amutse - 224061887 
+- [Member 2 Name] - [Student ID] 
+- [Member 3 Name] - [Student ID] 
+- [Member 4 Name] - [Student ID] 
+- [Member 5 Name] - [Student ID] 
 
 Project Overview
 A modern distributed smart public transport ticketing system for buses and trains in Windhoek.
