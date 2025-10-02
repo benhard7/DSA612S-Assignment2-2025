@@ -5,7 +5,7 @@ DSA612S - Distributed Systems and Applications - Assignment 2 (2025)
 
 Group Members
 - Benhard Amutse - 224061887 
-- [Member 2 Name] - [Student ID] 
+- Zazuvirua Tjijombo - 223049905
 - [Member 3 Name] - [Student ID] 
 - [Member 4 Name] - [Student ID] 
 - [Member 5 Name] - [Student ID] 
