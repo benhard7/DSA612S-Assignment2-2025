@@ -1,6 +1,6 @@
 Write-Host "Starting Smart Ticketing System..." -ForegroundColor Green
 
-# Start all services
+
 docker compose up -d
 
 Write-Host "Waiting for services to start..." -ForegroundColor Yellow
