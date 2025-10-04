@@ -1,33 +1,30 @@
-﻿// Passenger Service
+
 import ballerina/http;
 import ballerina/kafka;
 import ballerina/sql;
 import ballerina/mysql;
 
-// Configurable values
 configurable string DB_HOST = "localhost";
 configurable int DB_PORT = 3306;
 configurable string DB_NAME = "transport_db";
 configurable string DB_USER = "root";
 configurable string DB_PASS = "";
 
-// Kafka config
 configurable string KAFKA_BOOTSTRAP_SERVERS = "kafka:9092";
 configurable string TICKET_REQUEST_TOPIC = "ticket.requests";
 
-// Initialize DB client
 mysql:Client dbClient = check new (host = DB_HOST, port = DB_PORT, name = DB_NAME, user = DB_USER, password = DB_PASS);
 
 service /passenger on new http:Listener(8080) {
 
     resource function post register(http:Request req) returns http:Response {
-        // Parse JSON body
+        
         json payload = check req.getJsonPayload();
         string username = payload.username.toString();
         string passwordHash = payload.password.toString();
         string role = payload.role.toString();
 
-        // Insert user
+    
         var result = dbClient->execute(`INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)`,
                                        username, passwordHash, role);
         if result is error {
@@ -57,4 +54,5 @@ service /passenger on new http:Listener(8080) {
     }
 
 }
+
 
