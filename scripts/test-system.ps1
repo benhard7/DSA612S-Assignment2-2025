@@ -3,12 +3,12 @@ Write-Host "Smart Ticketing System - Test Script" -ForegroundColor White
 Write-Host "====================================" -ForegroundColor Gray
 Write-Host ""
 
-# Check Docker containers
+
 Write-Host "1. Docker Containers:" -ForegroundColor Gray
 docker-compose ps
 Write-Host ""
 
-# Test service endpoints
+
 Write-Host "2. Service Endpoints:" -ForegroundColor Gray
 $services = @(8080, 8081, 8082, 8083, 8084, 8085)
 
