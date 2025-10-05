@@ -27,12 +27,46 @@ Microservices
 5. Notification Service - Real-time notifications (Port: 8085)
 6. Admin Service - Administrative functions (Port: 8086)
 
-Quick Start
+### Event-driven Communication
+- **Kafka Topics**:  
+  - `ticket.requests`  
+  - `payments.processed`  
+  - `schedule.updates`  
 
-Clone and run
-git clone https://github.com/benhard7/DSA612S-Assignment2-2025.git
-cd DSA612S-Assignment2-2025
-docker-compose up -d
+### Persistence
+- **Database**: MongoDB (stores users, routes, tickets, payments).  
+
+### Orchestration
+- **Docker Compose** spins up:  
+  - `zookeeper`  
+  - `kafka`  
+  - `mongodb`  
+  - all 6 microservices  
+
+---
+
+## 🚀 Technologies Used
+- **Ballerina** – microservice implementation  
+- **Apache Kafka** – asynchronous event communication  
+- **MongoDB** – database  
+- **Docker & Docker Compose** – containerization & orchestration  
+- **PowerShell/Shell scripts** – automation and testing  
+
+---
+
+## ⚙️ Setup & Installation
+### 1. Prerequisites
+Make sure you have installed:  
+- [Docker](https://www.docker.com/)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+- (Optional) [Ballerina](https://ballerina.io/) – if you want to run services outside Docker  
+
+### 2. Clone Repository
+```bash
+git clone <your-repo-url>
+cd DSA612S-Assignment2-2025-main/DSA612S-Assignment2-2025-main
+```
+
 
 Documentation
 - [System Architecture](docs/architecture.md)
