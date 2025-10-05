@@ -63,7 +63,7 @@ Make sure you have installed:
 
 ### 2. Clone Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/benhard7/DSA612S-Assignment2-2025.git
 cd DSA612S-Assignment2-2025-main/DSA612S-Assignment2-2025-main
 ```
 
