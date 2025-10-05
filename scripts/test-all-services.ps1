@@ -28,4 +28,4 @@ catch {
 }
 
 Write-Host ""
-Write-Host "All services tested!" -ForegroundColor Cyan
+Write-Host "All services successfully tested!" -ForegroundColor Cyan
