@@ -1,74 +1,68 @@
 services:
-  
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.0
+    image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.0
+    image: wurstmeister/kafka:2.13-2.8.1
     depends_on:
       - zookeeper
-    ports:
-      - "9092:9092"
     environment:
-      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_CREATE_TOPICS: "passenger.events:3:1,ticket.events:3:1,payment.events:3:1,transport.events:3:1,notification.events:3:1,admin.events:3:1"
+    ports:
+      - "29092:29092"
 
-  
   mongodb:
-    image: mongo:5.0
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
     ports:
       - "27017:27017"
-
-  
-  passenger-service:
-    image: httpd:alpine
-    ports:
-      - "8081:80"
-    command: >
-      sh -c "
-      echo '<html><body><h1>Passenger Service</h1><p>Port: 8081</p><p>Status: Running</p></body></html>' > /usr/local/apache2/htdocs/index.html &&
-      httpd-foreground
-      "
-
-  ticketing-service:
-    image: httpd:alpine
-    ports:
-      - "8082:80"
-    command: >
-      sh -c "
-      echo '<html><body><h1>Ticketing Service</h1><p>Port: 8082</p><p>Status: Running</p></body></html>' > /usr/local/apache2/htdocs/index.html &&
-      httpd-foreground
-      "
-
-  transport-service:
-    image: httpd:alpine
-    ports:
-      - "8084:80"
-    command: >
-      sh -c "
-      echo '<html><body><h1>Transport Service</h1><p>Port: 8084</p><p>Status: Running</p></body></html>' > /usr/local/apache2/htdocs/index.html &&
-      httpd-foreground
-      "
+    volumes:
+      - mongodb_data:/data/db
 
   admin-service:
     image: httpd:alpine
     ports:
       - "8080:80"
-    command: >
-      sh -c "
-      echo '<html><body><h1>Admin Service</h1><p>Port: 8080</p><p>Status: Running</p></body></html>' > /usr/local/apache2/htdocs/index.html &&
-      httpd-foreground
-      "
+    command: ["sh", "-c", "echo '<html><body><h1>Admin Service</h1><p>Port: 8080</p><p>Status: RUNNING</p><p>Kafka Topics: 6</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
+
+  passenger-service:
+    image: httpd:alpine
+    ports:
+      - "8081:80"
+    command: ["sh", "-c", "echo '<html><body><h1>Passenger Service</h1><p>Port: 8081</p><p>Status: RUNNING</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
+
+  ticketing-service:
+    image: httpd:alpine
+    ports:
+      - "8082:80"
+    command: ["sh", "-c", "echo '<html><body><h1>Ticketing Service</h1><p>Port: 8082</p><p>Status: RUNNING</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
 
   payment-service:
     image: httpd:alpine
-    command: tail -f /dev/null
+    ports:
+      - "8083:80"
+    command: ["sh", "-c", "echo '<html><body><h1>Payment Service</h1><p>Port: 8083</p><p>Status: RUNNING</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
+
+  transport-service:
+    image: httpd:alpine
+    ports:
+      - "8084:80"
+    command: ["sh", "-c", "echo '<html><body><h1>Transport Service</h1><p>Port: 8084</p><p>Status: RUNNING</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
 
   notification-service:
     image: httpd:alpine
-    command: tail -f /dev/null
+    ports:
+      - "8085:80"
+    command: ["sh", "-c", "echo '<html><body><h1>Notification Service</h1><p>Port: 8085</p><p>Status: RUNNING</p></body></html>' > /usr/local/apache2/htdocs/index.html && httpd-foreground"]
+
+volumes:
+  mongodb_data:
