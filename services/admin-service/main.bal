@@ -14,7 +14,7 @@ service /admin on new http:Listener(8080) {
     resource function post disruptions(http:Request req) returns json {
         return {
             message: "Service disruption published",
-            disruptionId: "D001"
+            disruptionId: "D009"
         };
     }
 
