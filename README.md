@@ -13,19 +13,21 @@ Group Members
 Project Overview
 A modern distributed smart public transport ticketing system for buses and trains in Windhoek.
 
-Technology Stack
-- Programming Language: Ballerina
-- Message Broker: Apache Kafka
-- Database: MongoDB
-- Containerization: Docker & Docker Compose
+The system supports:  
+- **Passengers**: account creation, route browsing, ticket purchase/validation.  
+- **Administrators**: route management, service disruption notifications, ticket reports.  
+- **Validators**: validate tickets at boarding points.  
 
-Microservices
-1. Passenger Service - User management (Port: 8081)
-2. Transport Service - Routes and schedules (Port: 8082)
-3. Ticketing Service - Ticket lifecycle (Port: 8083)
-4. Payment Service - Payment processing (Port: 8084)
-5. Notification Service - Real-time notifications (Port: 8085)
-6. Admin Service - Administrative functions (Port: 8086)
+---
+
+## 🏗️ System Architecture
+### Microservices Implemented
+1. **Passenger Service** – user registration/login, manage accounts, view tickets.  
+2. **Transport Service** – create/manage routes & schedules.  
+3. **Ticketing Service** – ticket lifecycle: `CREATED → PAID → VALIDATED → EXPIRED`.  
+4. **Payment Service** – simulate payments and publish payment events.  
+5. **Notification Service** – notify passengers about schedule changes & validations.  
+6. **Admin Service** – manage routes, disruptions, and reporting.
 
 ### Event-driven Communication
 - **Kafka Topics**:  
