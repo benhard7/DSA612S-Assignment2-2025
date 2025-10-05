@@ -13,26 +13,62 @@ Group Members
 Project Overview
 A modern distributed smart public transport ticketing system for buses and trains in Windhoek.
 
-Technology Stack
-- Programming Language: Ballerina
-- Message Broker: Apache Kafka
-- Database: MongoDB
-- Containerization: Docker & Docker Compose
+The system supports:  
+- **Passengers**: account creation, route browsing, ticket purchase/validation.  
+- **Administrators**: route management, service disruption notifications, ticket reports.  
+- **Validators**: validate tickets at boarding points.  
 
-Microservices
-1. Passenger Service - User management (Port: 8081)
-2. Transport Service - Routes and schedules (Port: 8082)
-3. Ticketing Service - Ticket lifecycle (Port: 8083)
-4. Payment Service - Payment processing (Port: 8084)
-5. Notification Service - Real-time notifications (Port: 8085)
-6. Admin Service - Administrative functions (Port: 8086)
+---
 
-Quick Start
+## 🏗️ System Architecture
+### Microservices Implemented
+1. **Passenger Service** – user registration/login, manage accounts, view tickets.  
+2. **Transport Service** – create/manage routes & schedules.  
+3. **Ticketing Service** – ticket lifecycle: `CREATED → PAID → VALIDATED → EXPIRED`.  
+4. **Payment Service** – simulate payments and publish payment events.  
+5. **Notification Service** – notify passengers about schedule changes & validations.  
+6. **Admin Service** – manage routes, disruptions, and reporting.
 
-Clone and run
+### Event-driven Communication
+- **Kafka Topics**:  
+  - `ticket.requests`  
+  - `payments.processed`  
+  - `schedule.updates`  
+
+### Persistence
+- **Database**: MongoDB (stores users, routes, tickets, payments).  
+
+### Orchestration
+- **Docker Compose** spins up:  
+  - `zookeeper`  
+  - `kafka`  
+  - `mongodb`  
+  - all 6 microservices  
+
+---
+
+## 🚀 Technologies Used
+- **Ballerina** – microservice implementation  
+- **Apache Kafka** – asynchronous event communication  
+- **MongoDB** – database  
+- **Docker & Docker Compose** – containerization & orchestration  
+- **PowerShell/Shell scripts** – automation and testing  
+
+---
+
+## ⚙️ Setup & Installation
+### 1. Prerequisites
+Make sure you have installed:  
+- [Docker](https://www.docker.com/)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+- (Optional) [Ballerina](https://ballerina.io/) – if you want to run services outside Docker  
+
+### 2. Clone Repository
+```bash
 git clone https://github.com/benhard7/DSA612S-Assignment2-2025.git
-cd DSA612S-Assignment2-2025
-docker-compose up -d
+cd DSA612S-Assignment2-2025-main/DSA612S-Assignment2-2025-main
+```
+
 
 Documentation
 - [System Architecture](docs/architecture.md)
