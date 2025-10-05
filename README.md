@@ -68,6 +68,10 @@ Make sure you have installed:
 git clone https://github.com/benhard7/DSA612S-Assignment2-2025.git
 cd DSA612S-Assignment2-2025-main/DSA612S-Assignment2-2025-main
 ```
+### 3. Build & Start System
+```bash
+docker-compose up --build
+```
 
 
 Documentation
