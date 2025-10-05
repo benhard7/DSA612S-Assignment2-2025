@@ -3,13 +3,13 @@ Write-Host "==================================================" -ForegroundColor
 Write-Host "Testing all system components and infrastructure..." -ForegroundColor Gray
 Write-Host ""
 
-# 1. DOCKER CONTAINERS STATUS
+
 Write-Host "1. DOCKER CONTAINER STATUS" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 docker-compose ps
 Write-Host ""
 
-# 2. SERVICE ENDPOINTS TESTING
+
 Write-Host "2. SERVICE ENDPOINT TESTING" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 
@@ -34,7 +34,7 @@ foreach ($service in $services) {
 }
 Write-Host ""
 
-# 3. DATABASE CONNECTIVITY
+
 Write-Host "3. DATABASE CONNECTIVITY" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 Write-Host "Testing MongoDB connection..." -NoNewline
@@ -50,11 +50,11 @@ try {
 }
 Write-Host ""
 
-# 4. KAFKA INFRASTRUCTURE
+
 Write-Host "4. KAFKA INFRASTRUCTURE" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 
-# Test Zookeeper
+
 Write-Host "Testing Zookeeper..." -NoNewline
 try {
     $zookeeperTest = docker exec dsa612s-assignment2-2025-zookeeper-1 echo "ruok" | nc localhost 2181
@@ -67,7 +67,7 @@ try {
     Write-Host " NOT RESPONDING" -ForegroundColor Red
 }
 
-# Test Kafka
+
 Write-Host "Testing Kafka..." -NoNewline
 try {
     $kafkaTest = docker exec dsa612s-assignment2-2025-kafka-1 /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server kafka:9092
@@ -84,14 +84,14 @@ try {
 }
 Write-Host ""
 
-# 5. NETWORK CONNECTIVITY
+
 Write-Host "5. NETWORK CONNECTIVITY" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 Write-Host "Docker Network: dsa612s-assignment2-2025_default" -ForegroundColor Gray
 docker network ls | findstr "dsa612s-assignment2-2025"
 Write-Host ""
 
-# 6. SYSTEM HEALTH SUMMARY
+
 Write-Host "6. SYSTEM HEALTH SUMMARY" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 
@@ -106,7 +106,7 @@ Write-Host "Database: MongoDB connected" -ForegroundColor Green
 Write-Host "Message Broker: Kafka running" -ForegroundColor Green
 Write-Host ""
 
-# 7. SUBMISSION STATUS
+
 Write-Host "7. SUBMISSION STATUS" -ForegroundColor White
 Write-Host "==================================================" -ForegroundColor Gray
 
