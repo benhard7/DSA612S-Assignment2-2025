@@ -9,7 +9,7 @@ Group Members
 - Isack  Teofilus  -  224082760
 - Hussein Hashili  - 223091227
 - Osama K Billawer - 224063804
-  
+    
 Project Overview
 A modern distributed smart public transport ticketing system for buses and trains in Windhoek.
 
