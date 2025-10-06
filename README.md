@@ -1,13 +1,13 @@
-     
+                                                                                                                                                      
 Smart Public Transport Ticketing System
  
 DSA612S - Distributed Systems and Applications - Assignment 2 (2025)
-
+     
 Group Members
 - Benhard Amutse - 224061887 
 - Zazuvirua Tjijombo - 223049905
 - Isack  Teofilus  -  224082760
-- Hussein Hashili  - 223091227
+- Hussein Hashili  - 223091227                                                                                                                          
 - Osama K Billawer - 224063804
     
 Project Overview
